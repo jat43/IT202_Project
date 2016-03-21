@@ -1,1 +1,3 @@
-Welcome to the IT202 Project.
+Welcome to the IT 202 Example Project
+
+Booyakasha
