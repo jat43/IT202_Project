@@ -28,7 +28,7 @@ class clientDB
 	$this->db->close();
     }
 
-    public function getClientId($name)m
+    public function getClientId($name)
     {
 	$query = "select clientId from clients where clientName = '$name';";
 	$results = $this->db->query($query);

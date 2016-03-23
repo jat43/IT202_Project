@@ -1,13 +1,9 @@
 <?php
 
-echo "<p> before the require_once </p>";
-
 require_once("clientDB.php.inc");
 
-echo "<p> after the require once </p>";
-
 $request = $_POST['request'];
-$response = "FUCK<p>";
+$response = "Umm<p>";
 switch($request)
 {
     case "register":
@@ -32,6 +28,7 @@ switch($request)
 	if ($response['success']===true)
 	{
 		$response = "Login Successful!<p>";
+		HEADER("LOCATION: browse.php");
 	}
 	else
 	{
@@ -41,5 +38,4 @@ switch($request)
 }
 
 echo $response;
-
 ?>

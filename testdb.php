@@ -12,18 +12,18 @@ if ($db->connect_errno > 0 )
     exit(-1);
 }
 
-$query = "select * from products;";
+$query = "select * from orders;";
 
 $results = $db->query($query);
 
-print_r($results);
+//print_r($results);
 
 while ($row = $results->fetch_assoc())
 {
-   print_r($row);
+   print_r($row['Address']);
 }
 
-echo "We are connected to the DATERBASE".PHP_EOL;
+echo "\nWe are connected to the DATERBASE".PHP_EOL;
 
 $db->close();
 
