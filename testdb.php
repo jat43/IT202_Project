@@ -12,7 +12,7 @@ if ($db->connect_errno > 0 )
     exit(-1);
 }
 
-$query = "select * from Student;";
+$query = "select * from products;";
 
 $results = $db->query($query);
 

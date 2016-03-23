@@ -1,6 +1,10 @@
 <?php
 
+echo "<p> before the require_once </p>";
+
 require_once("clientDB.php.inc");
+
+echo "<p> after the require once </p>";
 
 $request = $_POST['request'];
 $response = "FUCK<p>";
@@ -28,7 +32,6 @@ switch($request)
 	if ($response['success']===true)
 	{
 		$response = "Login Successful!<p>";
-		//HEADER("LOCATION: productOrder.html"); saving for later
 	}
 	else
 	{
@@ -38,4 +41,5 @@ switch($request)
 }
 
 echo $response;
+
 ?>
