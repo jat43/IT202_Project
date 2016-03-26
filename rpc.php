@@ -28,7 +28,7 @@ switch($request)
 	if ($response['success']===true)
 	{
 		$response = "Login Successful!<p>";
-		HEADER("LOCATION: browse.php");
+		HEADER("LOCATION: browse.html");
 	}
 	else
 	{

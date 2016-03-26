@@ -34,16 +34,66 @@ class browseProduct
 	$query = "select * from products;";
 	$results = $this->db->query($query);
 	
-	$client = $results->fetch_assoc();
 	
 	while ($row = $results->fetch_assoc())
 	{
-	    print_r($row['productName']."<br>"."\n");
+	    
+	    echo "Product Name: ";
+	    print_r($row['productName']."<br>");
+	    
+	    echo "Product Image: "; 
 	    print_r($row['productImage']."<br>");
+	    
+	    echo "Product Price: $";
 	    print_r($row['productPricing']."<br>");
+	    
+	    echo "Product Review: ";
 	    print_r($row['productReview']."<br>");
+	    
+	    echo "Product Stock Number: ";
 	    print_r($row['productStock']."<br><br>");
 	}
+    }
+    
+    public function order($name, $address, $productName)
+    {
+	$name = $this->db->real_escape_string($name);
+	$address = $this->db->real_escape_string($address);
+	$productName = $this->db->real_escape_string($productName);
+	$addQuery = "insert into orders (name, Address, itemName) values ('$name','$address','$productName');";
+        $results = $this->db->query($addQuery);
+	if (!$results)
+	{
+	    $this->logger->log("error: ".$this->db->error);
+	}
+	return array("success"=>true);
+    }
+    
+    public function browsetags($tags)
+    {
+	$key = $tags;
+	$query = "select * from products where tags = '$key';";
+	$results = $this->db->query($query);
+	
+	while ($row = $results->fetch_assoc())
+	{
+	    
+	    echo "Product Name: ";
+	    print_r($row['productName']."<br>");
+	    
+	    echo "Product Image: "; 
+	    print_r($row['productImage']."<br>");
+	    
+	    echo "Product Price: $";
+	    print_r($row['productPricing']."<br>");
+	    
+	    echo "Product Review: ";
+	    print_r($row['productReview']."<br>");
+	    
+	    echo "Product Stock Number: ";
+	    print_r($row['productStock']."<br><br>");
+	}
+	
     }
 }
 
