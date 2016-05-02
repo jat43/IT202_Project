@@ -55,6 +55,26 @@ class browseProduct
 	}
     }
     
+    public function view()
+    {
+	$query = "select * from orders;";
+	$results = $this->db->query($query);
+	
+	while ($row = $results->fetch_assoc())
+	{
+	    echo "Name: ";
+	    print_r($row['name']."<br>");
+	    
+	    echo "Address: ";
+	    print_r($row['Address']."<br>");
+	    
+	    echo "Product: ";
+	    print_r($row['itemName']."<br><br>");
+	
+	}
+    
+    }
+    
     public function order($name, $address, $productName)
     {
 	$name = $this->db->real_escape_string($name);

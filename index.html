@@ -1,18 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta char-set="utf-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login Page</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Login here</h1>
-<form action="rpc.php" method="post" >
-<p>username: <input type="text" name="username" /></p>
-<p>password: <input type ="password" name="password" /></p>
-<input type="submit" name="request" value="login"/> 
-</form>
 
-<a href = "register.html">Register Here</a>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Torres Vape</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="browse.html">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="orders.html">Orders</a></li>
+       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="index.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="form-group">
+
+<h1>Login here</h1>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<p>username: <input type="text" id="username" /></p>
+<p>password: <input type ="password" id="password" /></p>
+<button type="button" onclick="sendRequest()">Login</button>
+
+</div>
+<br>
+<div id="output"></div>
+
+<script>
+var request;
+function sendRequest()
+{
+	var name = document.getElementById("username").value;
+	var pw = document.getElementById("password").value;
+	request = new XMLHttpRequest();
+	request.onreadystatechange = handleResponse;
+	request.open("POST","rpc.php",true);
+	request.setRequestHeader("Content-type","application/json");
+	var data = JSON.stringify({request:"login",username:name,password:pw});
+	request.send(data);
+}
+
+function handleResponse()
+{
+	document.getElementById("output").innerHTML = request.responseText;
+}
+</script>
+
+
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
-

@@ -2,18 +2,18 @@
 
 require_once("clientDB.php.inc");
 
-$request = $_POST['request'];
-$response = "Umm<p>";
-switch($request)
+$request = json_decode(file_get_contents("php://input"),true);
+$response = "error unrecognized request<p>";
+switch($request["request"])
 {
     case "register":
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $username = $request['username'];
+        $password = $request['password'];
         $login = new clientDB("connect.ini");
         $response = $login->addNewClient($username,$password);
         if ($response['success']===true)
         {
-		$response = "Registration Successful!!!<p>";
+		$response = "Registration Successful!!!";
         }
         else
         {
@@ -21,14 +21,13 @@ switch($request)
         }
         break;
     case "login":
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$username = $request['username'];
+	$password = $request['password'];
 	$login = new clientDB("connect.ini");
 	$response = $login->validateClient($username,$password);
 	if ($response['success']===true)
 	{
-		$response = "Login Successful!<p>";
-		HEADER("LOCATION: browse.html");
+		$response = "Login Successful!!!";
 	}
 	else
 	{
@@ -37,5 +36,5 @@ switch($request)
 	break;
 }
 
-echo $response;
+echo json_encode($response);
 ?>
