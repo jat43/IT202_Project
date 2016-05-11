@@ -38,19 +38,19 @@ class browseProduct
 	while ($row = $results->fetch_assoc())
 	{
 	    
-	    echo "Product Name: ";
+	    echo "<p>Product Name: ";
 	    print_r($row['productName']."<br>");
 	    
-	    echo "Product Image: "; 
+	    echo "<p>Product Image: "; 
 	    print_r($row['productImage']."<br>");
 	    
-	    echo "Product Price: $";
+	    echo "<p>Product Price: $";
 	    print_r($row['productPricing']."<br>");
 	    
-	    echo "Product Review: ";
+	    echo "<p>Product Review: ";
 	    print_r($row['productReview']."<br>");
 	    
-	    echo "Product Stock Number: ";
+	    echo "<p>Product Stock Number: ";
 	    print_r($row['productStock']."<br><br>");
 	}
     }
